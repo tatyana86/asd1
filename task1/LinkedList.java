@@ -20,7 +20,7 @@ public class LinkedList
         else
             this.tail.next = item;
         this.tail = item;
-        size ++;
+        this.size ++;
     }
 
     public Node find(int value) {
@@ -51,10 +51,15 @@ public class LinkedList
         Node node = this.head;
         Node lastNode = null;
         while(node != null) {
+            if(node.value == _value && this.count() == 1) {
+                clear();
+                return true;
+            }
+
             if(node.value == _value && lastNode == null) {
                 this.head = node.next;
                 node.next = null;
-                size --;
+                this.size --;
                 return true;
             }
 
@@ -65,7 +70,7 @@ public class LinkedList
             if(node.value == _value) {
                 lastNode.next = node.next;
                 node.next = null;
-                size --;
+                this.size --;
                 return true;
             }
 
@@ -81,11 +86,16 @@ public class LinkedList
         Node node = this.head;
         Node lastNode = null;
         while(node != null) {
+            if(node.value == _value && this.count() == 1) {
+                clear();
+                return;
+            }
+
             if(node.value == _value && lastNode == null) {
                 this.head = node.next;
                 node.next = null;
                 node = this.head;
-                size --;
+                this.size --;
                 continue;
             }
 
@@ -96,7 +106,7 @@ public class LinkedList
             if(node.value == _value) {
                 lastNode.next = node.next;
                 node.next = null;
-                size --;
+                this.size --;
             }
 
             if(node.value != _value) {
@@ -111,6 +121,7 @@ public class LinkedList
     {
         this.head = null;
         this.tail = null;
+        this.size = 0;
     }
 
     public int count()
@@ -126,11 +137,11 @@ public class LinkedList
         if(_nodeAfter == null) {
             _nodeToInsert.next = this.head;
             this.head = _nodeToInsert;
-            size ++;
+            this.size ++;
             return;
         }
 
-        if(size == 0) {
+        if(this.size == 0) {
             return;
         }
 
@@ -143,7 +154,7 @@ public class LinkedList
             if(node == _nodeAfter) {
                 _nodeToInsert.next = _nodeAfter.next;
                 node.next = _nodeToInsert;
-                size ++;
+                this.size ++;
                 return;
             }
             node = node.next;

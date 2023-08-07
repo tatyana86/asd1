@@ -87,6 +87,8 @@ class LinkedListTest {
 
         assertFalse(emptyList.remove(10));
         assertEquals(0, emptyList.count());
+        assertEquals(null, emptyList.head);
+        assertEquals(null, emptyList.tail);
 
     }
 
@@ -95,6 +97,8 @@ class LinkedListTest {
 
         emptyList.removeAll(10);
         assertEquals(0, emptyList.count());
+        assertEquals(null, emptyList.head);
+        assertEquals(null, emptyList.tail);
 
     }
 
@@ -117,11 +121,26 @@ class LinkedListTest {
 
         assertTrue(emptyList.remove(1));
         assertEquals(0, emptyList.count());
+        assertEquals(null, emptyList.head);
+        assertEquals(null, emptyList.tail);
 
     }
 
     @Test
-    public void removeAllMissingElemFromOneSizeList() {
+    public void removeExistElemFromTwoSizeList() {
+
+        emptyList.addInTail(new Node(1));
+        emptyList.addInTail(new Node(2));
+
+        assertTrue(emptyList.remove(1));
+        assertEquals(1, emptyList.count());
+        assertEquals(2, emptyList.head.value);
+        assertEquals(2, emptyList.tail.value);
+
+    }
+
+    @Test
+    public void removeAllMissingElemFromTwoSizeList() {
 
         emptyList.addInTail(new Node(1));
         emptyList.addInTail(new Node(2));
@@ -134,13 +153,29 @@ class LinkedListTest {
     }
 
     @Test
-    public void removeAllExistElemFromOneSizeList() {
+    public void removeAllExistElemFromTwoSizeList() {
 
         emptyList.addInTail(new Node(1));
         emptyList.addInTail(new Node(1));
 
         emptyList.removeAll(1);
         assertEquals(0, emptyList.count());
+        assertEquals(null, emptyList.head);
+        assertEquals(null, emptyList.tail);
+
+    }
+
+    @Test
+    public void removeAllExistElemFromThreeSizeList() {
+
+        emptyList.addInTail(new Node(1));
+        emptyList.addInTail(new Node(1));
+        emptyList.addInTail(new Node(2));
+
+        emptyList.removeAll(1);
+        assertEquals(1, emptyList.count());
+        assertEquals(2, emptyList.head.value);
+        assertEquals(2, emptyList.tail.value);
 
     }
 

@@ -104,7 +104,7 @@ class LinkedList2Test {
     }
 
     @Test
-    public void removeAllFromEmptyList1() {
+    public void removeAllFromEmptyList() {
 
         emptyList.removeAll(1);
         assertEquals(0, emptyList.count());
@@ -114,7 +114,7 @@ class LinkedList2Test {
     }
 
     @Test
-    public void removeAllFromOneSizeList1() {
+    public void removeAllFromOneSizeList() {
 
         emptyList.addInTail(new Node(1));
 
@@ -135,6 +135,23 @@ class LinkedList2Test {
         assertEquals(0, emptyList.count());
         assertEquals(null, emptyList.head);
         assertEquals(null, emptyList.tail);
+
+    }
+
+    @Test
+    public void removeAllFromTwoSizeList2() {
+
+        emptyList.addInTail(new Node(2));
+        emptyList.addInTail(new Node(1));
+
+        emptyList.removeAll(1);
+        assertEquals(1, emptyList.count());
+        assertEquals(2, emptyList.head.value);
+        assertEquals(2, emptyList.tail.value);
+        assertEquals(null, emptyList.head.prev);
+        assertEquals(null, emptyList.head.next);
+        assertEquals(null, emptyList.tail.prev);
+        assertEquals(null, emptyList.tail.next);
 
     }
 
@@ -167,6 +184,24 @@ class LinkedList2Test {
         assertEquals(1, emptyList.count());
         assertEquals(2, emptyList.head.value);
         assertEquals(2, emptyList.tail.value);
+        assertEquals(null, emptyList.head.prev);
+        assertEquals(null, emptyList.head.next);
+        assertEquals(null, emptyList.tail.prev);
+        assertEquals(null, emptyList.tail.next);
+
+    }
+
+    @Test
+    public void removeAllFromThreeSizeList3() {
+
+        emptyList.addInTail(new Node(1));
+        emptyList.addInTail(new Node(2));
+        emptyList.addInTail(new Node(2));
+
+        emptyList.removeAll(2);
+        assertEquals(1, emptyList.count());
+        assertEquals(1, emptyList.head.value);
+        assertEquals(1, emptyList.tail.value);
         assertEquals(null, emptyList.head.prev);
         assertEquals(null, emptyList.head.next);
         assertEquals(null, emptyList.tail.prev);

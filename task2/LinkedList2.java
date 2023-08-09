@@ -91,13 +91,14 @@ public class LinkedList2
     public void removeAll(int _value)
     {
         Node node = this.head;
+        Node lastNode = null;
         while(node != null) {
             if (node.value == _value && this.count() == 1) {
                 clear();
                 return;
             }
 
-            if(node.value == _value && node.prev == null) {
+            if(node.value == _value && lastNode == null) {
                 this.head = node.next;
                 this.head.prev = null;
                 node.next = null;
@@ -107,8 +108,8 @@ public class LinkedList2
             }
 
             if(node.value == _value && node.next == null) {
-                this.tail = node.prev;
-                node.prev.next = node.next;
+                this.tail = lastNode;
+                lastNode.next = node.next;
                 node.prev = null;
                 this.size --;
                 return;
@@ -122,7 +123,11 @@ public class LinkedList2
                 this.size --;
             }
 
-            node = node.next;
+            if(node.value != _value) {
+                lastNode = node;
+            }
+
+            node = lastNode.next;
         }
     }
 

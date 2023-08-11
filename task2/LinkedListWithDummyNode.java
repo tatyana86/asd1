@@ -2,31 +2,28 @@ import java.util.ArrayList;
 
 public class LinkedListWithDummyNode
 {
-    private final DummyNode dummyHead;
-    private final DummyNode dummyTail;
+    private final DummyNode dummy;
     int size;
 
     public LinkedListWithDummyNode()
     {
-        dummyHead = new DummyNode();
-        dummyTail = new DummyNode();
-        dummyTail.prev = dummyHead;
+        dummy = new DummyNode();
         size = 0;
     }
 
     public void addInTail(Node _item)
     {
-        dummyTail.prev.next = _item;
-        _item.prev = this.dummyTail.prev;
-        _item.next = this.dummyTail;
-        this.dummyTail.prev = _item;
+        dummy.prev.next = _item;
+        _item.prev = this.dummy.prev;
+        _item.next = this.dummy;
+        this.dummy.prev = _item;
         this.size ++;
     }
 
     public Node find(int _value)
     {
-        Node node = this.dummyHead.next;
-        while (node != null && node != this.dummyTail) {
+        Node node = this.dummy.next;
+        while (node != this.dummy) {
             if (node.value == _value)
                 return node;
             node = node.next;
@@ -37,8 +34,8 @@ public class LinkedListWithDummyNode
     public ArrayList<Node> findAll(int _value)
     {
         ArrayList<Node> nodes = new ArrayList<Node>();
-        Node node = this.dummyHead.next;
-        while(node != null && node != this.dummyTail) {
+        Node node = this.dummy.next;
+        while(node != this.dummy) {
             if(node.value == _value) {
                 nodes.add(node);
             }
@@ -49,8 +46,8 @@ public class LinkedListWithDummyNode
 
     public boolean remove(int _value)
     {
-        Node node = this.dummyHead.next;
-        while(node != null && node != this.dummyTail) {
+        Node node = this.dummy.next;
+        while(node != this.dummy) {
             if(node.value == _value) {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
@@ -64,8 +61,8 @@ public class LinkedListWithDummyNode
 
     public void removeAll(int _value)
     {
-        Node node = this.dummyHead.next;
-        while(node != null && node != this.dummyTail) {
+        Node node = this.dummy.next;
+        while(node != this.dummy) {
             if(node.value == _value) {
                 node.next.prev = node.prev;
                 node.prev.next = node.next;
@@ -77,8 +74,8 @@ public class LinkedListWithDummyNode
 
     public void clear()
     {
-        this.dummyHead.next = null;
-        this.dummyTail.prev = null;
+        this.dummy.next = null;
+        this.dummy.prev = null;
         this.size = 0;
     }
 
@@ -94,10 +91,10 @@ public class LinkedListWithDummyNode
             return;
         }
         if(_nodeAfter == null) {
-            this.dummyHead.next.prev = _nodeToInsert;
-            _nodeToInsert.next = this.dummyHead.next;
-            this.dummyHead.next = _nodeToInsert;
-            _nodeToInsert.prev = this.dummyHead;
+            this.dummy.next.prev = _nodeToInsert;
+            _nodeToInsert.next = this.dummy.next;
+            this.dummy.next = _nodeToInsert;
+            _nodeToInsert.prev = this.dummy;
             this.size ++;
             return;
         }
@@ -110,6 +107,8 @@ public class LinkedListWithDummyNode
     }
 
 }
+
+
 
 class DummyNode extends Node
 {

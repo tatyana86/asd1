@@ -54,6 +54,7 @@ public class DynArray<T>
 
         if(index == count) {
             append(itm);
+			return;
         }
 
         if(this.count == this.capacity) {

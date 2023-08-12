@@ -6,6 +6,15 @@ class DynArrayTest {
 
     private static final int minCapacity = 16;
     private DynArray<Integer> emptyArray = new DynArray<Integer>(Integer.class);
+	
+    @Test
+    public void insertInEmptyArray() {
+
+        emptyArray.insert(1, 0);
+
+        assertEquals(minCapacity, emptyArray.capacity);
+        assertEquals(1, emptyArray.count);
+    }
 
     @Test
     public void insertElemWhenCountLessThenCapacity() {

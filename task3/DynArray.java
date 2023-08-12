@@ -11,8 +11,7 @@ public class DynArray<T>
 
     public DynArray(Class clz)
     {
-        clazz = clz; 
-
+        clazz = clz;
         count = 0;
         makeArray(16);
     }
@@ -20,7 +19,7 @@ public class DynArray<T>
     public void makeArray(int new_capacity)
     {
         if(new_capacity < minCapacity) {
-            this.capacity = minCapacity;
+            new_capacity = minCapacity;
         }
 
         T [] tempArray = (T[]) Array.newInstance(this.clazz, new_capacity);
@@ -54,7 +53,7 @@ public class DynArray<T>
 
         if(index == count) {
             append(itm);
-			return;
+            return;
         }
 
         if(this.count == this.capacity) {
@@ -64,12 +63,14 @@ public class DynArray<T>
         System.arraycopy(this.array, index, this.array, index + 1, this.count - index);
         this.array[index] = itm;
         this.count ++;
+
     }
 
     public void remove(int index)
     {
         isExistIndex(index);
-        System.arraycopy(this.array, index, this.array, index - 1, this.count - index);
+        System.arraycopy(this.array, index + 1, this.array, index, this.count - index - 1);
+        this.array[count - 1] = null;
         this.count --;
 
         if(this.count < (this.capacity * minFullness)) {
@@ -88,5 +89,4 @@ public class DynArray<T>
             throw new ArrayIndexOutOfBoundsException("Incorrect index!");
         }
     }
-
 }

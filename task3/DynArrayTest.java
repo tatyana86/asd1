@@ -1,12 +1,11 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DynArrayTest {
 
     private static final int minCapacity = 16;
     private DynArray<Integer> emptyArray = new DynArray<Integer>(Integer.class);
-	
+
     @Test
     public void insertInEmptyArray() {
 
@@ -47,7 +46,6 @@ class DynArrayTest {
 
         assertThrowsExactly(ArrayIndexOutOfBoundsException.class, () -> emptyArray.insert(2, -1));
         assertThrowsExactly(ArrayIndexOutOfBoundsException.class, () -> emptyArray.insert(2, 1));
-
     }
 
     @Test
@@ -58,7 +56,6 @@ class DynArrayTest {
         }
 
         assertEquals(minCapacity * 2 * 2, emptyArray.capacity);
-
     }
 
     @Test
@@ -78,7 +75,7 @@ class DynArrayTest {
     }
 
     @Test
-    public void removeWhenCapacityShoulReduce() {
+    public void removeWhenCapacityShouldReduce() {
 
         emptyArray.makeArray(40);
 
@@ -86,11 +83,11 @@ class DynArrayTest {
             emptyArray.append(i);
         }
 
-        emptyArray.remove(10);
+        emptyArray.remove(0);
 
         assertEquals(26, emptyArray.capacity);
         assertEquals(19, emptyArray.count);
-        assertEquals(11, emptyArray.getItem(10));
+        assertEquals(1, emptyArray.getItem(0));
     }
 
     @Test
@@ -105,6 +102,5 @@ class DynArrayTest {
 
         emptyArray.remove(3);
         assertEquals(4, emptyArray.getItem(3));
-
     }
 }

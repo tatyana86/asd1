@@ -25,7 +25,7 @@ public class LinkedListWithDummyNode
     public Node find(int _value)
     {
         Node node = this.dummy.next;
-        while(node != this.dummy) {
+        while(!(node instanceof DummyNode)) {
             if (node.value == _value)
                 return node;
             node = node.next;
@@ -37,7 +37,7 @@ public class LinkedListWithDummyNode
     {
         ArrayList<Node> nodes = new ArrayList<Node>();
         Node node = this.dummy.next;
-        while(node != this.dummy) {
+        while(!(node instanceof DummyNode)) {
             if(node.value == _value) {
                 nodes.add(node);
             }
@@ -49,7 +49,7 @@ public class LinkedListWithDummyNode
     public boolean remove(int _value)
     {
         Node node = this.dummy.next;
-        while(node != this.dummy) {
+        while(!(node instanceof DummyNode)) {
             if(node.value == _value) {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
@@ -64,7 +64,7 @@ public class LinkedListWithDummyNode
     public void removeAll(int _value)
     {
         Node node = this.dummy.next;
-        while(node != this.dummy) {
+        while(!(node instanceof DummyNode)) {
             if(node.value == _value) {
                 node.next.prev = node.prev;
                 node.prev.next = node.next;

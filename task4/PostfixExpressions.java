@@ -17,32 +17,34 @@ public class PostfixExpressions {
                 continue;
             }
 
+            if(push == '=') {
+                System.out.println(stack2.pop());
+                return;
+            }
+
             int res = stack2.pop();
+            int temp = stack2.pop();
 
             if(push == '+') {
-                res += stack2.pop();
+                res += temp;
             }
 
             if(push == '-') {
-                res = stack2.pop() - res;
+                res = temp - res;
             }
 
             if(push == '*') {
-                res *= stack2.pop();
+                res *= temp;
             }
 
             if(push == '/') {
                 if(res == 0) {
                     throw new ArithmeticException("You can't divide by zero.");
                 }
-                res = stack2.pop() / res;
+                res = temp / res;
             }
 
             stack2.push(res);
-
-            if(push == '=') {
-                System.out.println(stack2.pop());
-            }
         }
     }
 

@@ -58,12 +58,16 @@ public class HashTable
 
     public int find(String value)
     {
-        int finalSlot = hashFun(value);
-
-        if(finalSlot == -1 || slots[finalSlot] == null) {
+        if(value == null) {
             return -1;
         }
 
-        return finalSlot;
+        for(int i = 0; i < size; i++) {
+            if(value.equals(slots[i])) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

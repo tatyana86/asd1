@@ -19,11 +19,7 @@ class NativeDictionary<T>
             return -1;
         }
 
-        int slot = 0;
-        char[] array = key.toCharArray();
-        for(int i = 0; i < array.length; i ++) {
-            slot += array[i];
-        }
+        int slot = Math.abs(key.hashCode());
         return slot % this.size;
     }
 
